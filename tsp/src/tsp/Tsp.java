@@ -101,37 +101,47 @@ public class Tsp {
         
         //Dynamic.pri(set);
         
-        HashMap<String, ArrayList> seturi = new HashMap<String, ArrayList>();
-        HashMap<String, ArrayList> seturi2 = new HashMap<String, ArrayList>();
+        HashMap<String, ArrayList> sets = new HashMap<String, ArrayList>();
+        HashMap<String, ArrayList> sets2 = new HashMap<String, ArrayList>();
         for(int i=0;i<set.size();i++){
         	ArrayList<Integer> subset = new ArrayList<Integer>();
         	subset.add(set.get(i));
-        	seturi.put("f("+set.get(i)+")",subset);
+        	sets2.put("f("+set.get(i)+")",subset);
         }
         
-        System.out.println(seturi.toString());
+        System.out.println(sets2.toString());
         
-        for(int i=0;i<set.size();i++){
-        	ArrayList<Integer> subset = new ArrayList<Integer>();
+        int number = set.size();
+        do{
+        	sets = new HashMap<String, ArrayList>(sets2);
+        	sets2 = new HashMap<String, ArrayList>();
+	        for(int i=0;i<set.size();i++){
+	        	ArrayList<Integer> subset = new ArrayList<Integer>();
         	
-        	for(java.util.Map.Entry<String, ArrayList> entry : seturi.entrySet()) {
-        	    String key = entry.getKey();
-        	    ArrayList<Integer> value = entry.getValue();
-        	    if(!value.contains(set.get(i))){
-        	    	subset = new ArrayList<Integer>(value);
-        	    	subset.add(0,set.get(i));
-        	    	 System.out.println(subset.toString());
-        	    	String functionName = "";
-        	    	for(int k=0;k<subset.size();k++){
-        	    		functionName = functionName + subset.get(k);
-        	    	}
-        	    	 System.out.println(functionName);
-        	    	seturi2.put("f("+functionName+")",subset);
-        	    }
-        	}
-        	
-        }
-        System.out.println(seturi2.toString());
+	        	for(java.util.Map.Entry<String, ArrayList> entry : sets.entrySet()) {
+	        	    String key = entry.getKey();
+	        	    ArrayList<Integer> value = entry.getValue();
+	        	    
+	        	    if(!value.contains(set.get(i))){
+	        	    	
+	        	    	subset = new ArrayList<Integer>(value);
+	        	    	subset.add(0,set.get(i));
+	        	    	
+	        	    	String functionName = "";
+	        	    	for(int k=0;k<subset.size();k++){
+	        	    		functionName = functionName + subset.get(k);
+	        	    	}
+	        	    	
+	        	    	sets2.put("f("+functionName+")",subset);
+	        	    }
+	        	}
+	        	
+	        }
+	        number--;
+	        System.out.println(sets.toString());
+        } while( number >= 1);
+        
+        
         /*
         int size=2;
         int repeat=2;
