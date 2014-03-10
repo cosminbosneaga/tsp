@@ -14,6 +14,10 @@ public class NodeList {
         return nodes.get(index);
     }
     
+    public static void removeAll(){
+    	nodes = new ArrayList<Node>();
+    }
+    
     public static int size(){
         return nodes.size();
     }

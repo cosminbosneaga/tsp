@@ -2,8 +2,8 @@ package tsp;
 
 public class Node {
 	
-	int x;
-    int y;
+	double x;
+    double y;
     
     // create a random new node
     public Node(){
@@ -12,24 +12,24 @@ public class Node {
     }
     
     // create a new node at location
-    public Node(int x, int y){
+    public Node(double x, double y){
         this.x = x;
         this.y = y;
     }
     
     // get x coordinate
-    public int getX(){
+    public double getX(){
         return this.x;
     }
     
     // get y coordinate
-    public int getY(){
+    public double getY(){
         return this.y;
     }
     
     public static double edge(Node n1, Node n2){
-    	int dx = n1.getX() - n2.getX();
-    	int dy = n1.getY() - n2.getY();
+    	double dx = n1.getX() - n2.getX();
+    	double dy = n1.getY() - n2.getY();
     	
     	return Math.sqrt(dx*dx+dy*dy);
     }

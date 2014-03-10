@@ -8,7 +8,7 @@ import java.util.Random;
 public class Tsp {
 
 	public static void main(String[] args) {
-		
+		/*
 		Node n = new Node(47,15);
 		NodeList.addNode(n);
 		
@@ -20,7 +20,7 @@ public class Tsp {
 		
 		Node n3 = new Node(1,60);
 		NodeList.addNode(n3);
-		/*
+		
 		Node n4 = new Node(15,68);
 		NodeList.addNode(n4);
 		
@@ -74,135 +74,7 @@ public class Tsp {
         NodeList.addNode(city20);
 		*/
 		
-		Adjacency.createMatrix();
-		
-		Adjacency.printMatrix();
-		
-		NNF.findPath();
-		
-		Tour.printTour();
-		//Dynamic.autoSet(0,1);
-		//Dynamic.rec(0,1,1,2);
-		
-		//Dynamic.pri();
-		
-		ArrayList<Integer> set = new ArrayList<Integer>(); //Create an ArrayList
-        for(int i=0;i<NodeList.size();i++){
-        	set.add(i);
-        }
-        set.remove(0);
-        System.out.println(set.toString());
-        //System.out.println(Dynamic.getSubsets2(set,1));
-        
-        //int first = set.get(0);
-		//set.remove(0);
-        //Dynamic.dinam(first,set,0);
-        //System.out.print(Dynamic.min);
-        
-        //Dynamic.pri(set);
-        
-        HashMap<String, ArrayList> sets = new HashMap<String, ArrayList>();
-        HashMap<String, ArrayList> sets2 = new HashMap<String, ArrayList>();
-        for(int i=0;i<set.size();i++){
-        	ArrayList<Integer> subset = new ArrayList<Integer>();
-        	subset.add(set.get(i));
-        	sets2.put("f("+set.get(i)+")",subset);
-        }
-        
-        System.out.println(sets2.toString());
-        
-        int number = set.size();
-        do{
-        	sets = new HashMap<String, ArrayList>(sets2);
-        	sets2 = new HashMap<String, ArrayList>();
-	        for(int i=0;i<set.size();i++){
-	        	ArrayList<Integer> subset = new ArrayList<Integer>();
-        	
-	        	for(java.util.Map.Entry<String, ArrayList> entry : sets.entrySet()) {
-	        	    String key = entry.getKey();
-	        	    ArrayList<Integer> value = entry.getValue();
-	        	    
-	        	    if(!value.contains(set.get(i))){
-	        	    	
-	        	    	subset = new ArrayList<Integer>(value);
-	        	    	subset.add(0,set.get(i));
-	        	    	
-	        	    	String functionName = "";
-	        	    	for(int k=0;k<subset.size();k++){
-	        	    		functionName = functionName + subset.get(k);
-	        	    	}
-	        	    	
-	        	    	sets2.put("f("+functionName+")",subset);
-	        	    }
-	        	}
-	        	
-	        }
-	        number--;
-	        System.out.println(sets.toString());
-        } while( number >= 1);
-        
-        
-        /*
-        int size=2;
-        int repeat=2;
-        boolean found = false;
-        ArrayList<ArrayList> subs = new ArrayList<ArrayList>();
-        int j=set.get(0);
-        System.out.println("set size:"+set.size());
-        for ( int i = 0; i <set.size(); i++){
-        	//System.out.print(set.get(i)+"-");
-        	//int j=set.get(0);
-        	repeat = 2;
-        	while(repeat>0){
-        		ArrayList<Integer> subset = new ArrayList<Integer>();
-        		System.out.println("set: "+subset.toString());
-        		System.out.println("j: "+j);
-        		for( int k=0; k<size;k++){
-        			found = false;
-        			//ArrayList<Integer> subset = new ArrayList<Integer>();
-        		
-        			while(!found){
-        				//System.out.println(set.get(i)+"_"+set.get(j)+"_"+subset.contains(new Integer(set.get(j))));
-        				if(set.get(i)!=j && !subset.contains(new Integer(j))){
-        					subset.add(j);
-        					System.out.println("set: "+subset.toString());
-        	        		System.out.println("j: "+j);
-        					//System.out.println(set.get(i)+"="+j);
-        					found = true;
-        				}
-        				j++;
-        				
-                		System.out.println("j: "+j);
-        				if(j>set.size()){
-        					j=set.get(0);
-        				}
-        				
-                		System.out.println("j: "+j);
-        				//System.out.println("da");
-        			}
-        			
-        			if( subset.size() == size && !subs.contains(subset)){
-        				System.out.println(set.get(i)+" "+subset.toString());
-        				subs.add(subset);
-        			}else
-        			if( subset.size() ==size ){ 
-        				k=0;
-        				subset = new ArrayList<Integer>();
-        			}
-        	
-        		}
-        		System.out.println(subset.toString());
-    			
-        		if(!subs.contains(subset)){
-    				System.out.println(set.get(i)+" "+subset.toString());
-    				subs.add(subset);
-    			}
-        		repeat--;System.out.print("s");
-        	}
-        	
-        	System.out.println();
-        }
-        */
-        //System.out.println(subs.toString());
+		Genetic.evolutionary(8);
+		Dynamic.findPath();
 	}
 }

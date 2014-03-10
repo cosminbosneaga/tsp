@@ -23,9 +23,9 @@ public class Tour {
         return tour.size();
     }
     
-    public static void printTour(){
+    public static double printTour(){
     	
-    	System.out.print("The tour is: ");
+    	//System.out.print("The tour is: ");
     	double total=0;
     	for(int i = 0; i<size();i++){
     		if( i+1 == size() ){
@@ -34,8 +34,9 @@ public class Tour {
     		else{
     			total += Node.edge(NodeList.findNode(tour.get(i)), NodeList.findNode(tour.get(i+1)));
     		}
-    		System.out.print(tour.get(i)+"->");
+    		//System.out.print(tour.get(i)+"->");
     	}
-    	 System.out.println("Total: "+total);
+    	//System.out.println("Total: "+total);
+    	return total; 
     }
 }
